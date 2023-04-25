@@ -101,13 +101,4 @@ def test_not_found_link():
         driver.quit()
 
 
-test_home_link()
-test_dynamic_link()
-test_created_link()
-test_no_content_link()
-test_moved_link()
-test_bad_request_link()
-test_unauthorized_link()
-test_forbidden_link()
-test_not_found_link()
 driver.quit()
