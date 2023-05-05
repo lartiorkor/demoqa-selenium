@@ -11,8 +11,6 @@ options.add_argument('--disable-blink-features=AutomationControlled')
 driver = webdriver.Chrome(options=options)
 actions = ActionChains(driver)
 
-# move this guy out to somewhere else
-
 
 @pytest.fixture(scope='module')
 def close_driver():
@@ -37,22 +35,19 @@ def test_navigation(close_driver):
     assert "https://demoqa.com/buttons" == driver.current_url, "Url does not match driver.current_url"
 
 
-def test_double_click_button(close_driver):
-    driver.get("https://demoqa.com/buttons")
+def test_double_click_button(close_driver, visit_buttons_url):
     double_click_btn = driver.find_element(By.ID, "doubleClickBtn")
     actions.double_click(double_click_btn).perform()
     assert driver.find_element(By.ID, "doubleClickMessage").is_displayed()
 
 
-def test_right_click_button(close_driver):
-    driver.get("https://demoqa.com/buttons")
+def test_right_click_button(close_driver, visit_buttons_url):
     right_click_btn = driver.find_element(By.ID, "rightClickBtn")
     actions.context_click(right_click_btn).perform()
     assert driver.find_element(By.ID, "rightClickMessage").is_displayed()
 
 
-def test_left_click_button(close_driver):
-    driver.get("https://demoqa.com/buttons")
+def test_left_click_button(close_driver, visit_buttons_url):
     btns = driver.find_elements(By.TAG_NAME, "button")
     btns[3].click()
     assert driver.find_element(By.ID, "dynamicClickMessage").is_displayed()
